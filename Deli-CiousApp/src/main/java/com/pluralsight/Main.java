@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Scanner;
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static List<String> orderItems = new ArrayList<String> 1();
+    private static List<String> orderItems = new ArrayList<String>();
+    private static Toppings allToppings = new Toppings();
 
+    private static Order order;
     public static void main(String[] args) {
         boolean running = true;
 
@@ -28,7 +30,9 @@ public class Main {
     }
 
     private static void startNewOrder() {
-        orderItems.clear();
+        order = new Order();
+
+       // orderItems.clear();
         boolean ordering = true;
 
         //Allows the customers to add items to their order and check out or
@@ -41,7 +45,7 @@ public class Main {
             System.out.println("4) Checkout");
             System.out.println("0) Cancel Order");
 
-            int choice = getChoice();
+            int choice = Console.PromptForInt();
 
             switch (choice) {
                 case 1 -> addSandwich();
@@ -61,43 +65,79 @@ public class Main {
     //want this to call from sandwich class and write to order class
     private static void addSandwich() {
         System.out.println("\nAdding Sandwich:");
+        Sandwich s = new Sandwich();
 
         System.out.print("Select your bread: ");
-        String bread = scanner.nextLine();
+        String bread = Console.PromptForString();
+        s.setBread(bread);
 
-        System.out.print("Sandwich size: ");
-        String size = scanner.nextLine();
+        int size = Console.PromptForInt("Sandwich size: ");
+        s.setSize(size);
 
-        System.out.print("Meat type: ");
-        String meat = scanner.nextLine();
+        //how to make s look like the sandwich described above..
 
-        System.out.print("Cheese type: ");
-        String cheese = scanner.nextLine();
+        System.out.print("Meat Menu ");
+        displayMeatMenu();
+        String meatSelection = Console.PromptForString();
+        String[] selections = meatSelection.split(",");
+
+        //helper method to go through choices and add it to Sandwich class meatArr
+      // ArrayList<String> meatToppingsArr = getMeatsFrmomUserToAddToSandwich(selections);
+
+        s.setMeats(getMeatsFromUserToAddToSandwich(selections));
+        System.out.println("Meats have been added to your sandwich");
+//================================Add cheese===========================================//
+        System.out.print("Cheese Menu ");
+        displayCheeseMenu();
+        String cheeseSelection = Console.PromptForString();
+        selections = cheeseSelection.split(",");
+
+        //helper method to go through choices and add it to Sandwich class cheeseArr
+        // ArrayList<String> cheeseToppingsArr = getCheesesFromUserToAddToSandwich(selections);
+
+        s.setCheeses(getCheesesFromUserToAddToSandwich(selections));
+        System.out.println("Cheeses have been added to your sandwich");
+
+        //regular toppings
 
         System.out.print("Other toppings (comma separated): ");
         String toppings = scanner.nextLine();
 
+        //
         System.out.print("Select sauces (comma separated): ");
         String sauces = scanner.nextLine();
 
-        System.out.print("Would you like the sandwich toasted? (yes/no): ");
-        String toasted = scanner.nextLine();
+        String toasted = Console.PromptForString("Would you like the sandwich toasted? (yes/no): ");
+        if(toasted.toLowerCase()=="yes"){
+            s.setToasted(true);
+        }
 
-        orderItems.add("Sandwich: " + size + " " + bread + " with " + meat + ", " + cheese + ", toppings: " + toppings + ", sauces: " + sauces + ", toasted: " + toasted);
+
+
+        // this shouldbe called after you have completed the entire sandwich!!
+
+      //  order.addSandwich(s);
+       order.addItemToOrder(s);
+
+       // orderItems.add("Sandwich: " + size + " " + bread + " with " + meat + ", " + cheese + ", toppings: " + toppings + ", sauces: " + sauces + ", toasted: " + toasted);
         System.out.println("Sandwich added to order.");
     }
 
     //Drink selection
     private static void addDrink() {
+
+
         System.out.println("\nAdding Drink:");
 
         System.out.print("Select drink size: ");
-        String size = scanner.nextLine();
+        String size = scanner.nextLine().toUpperCase();
 
         System.out.print("Select drink flavor: ");
         String flavor = scanner.nextLine();
 
-        orderItems.add("Drink: " + size + " " + flavor);
+        Drink d = new Drink(size,flavor);
+        order.addItemToOrder(d);
+       // orderItems.add("Drink: " + size + " " + flavor);
         System.out.println("Drink added to order.");
     }
 
@@ -108,7 +148,9 @@ public class Main {
         System.out.print("Select chip type: ");
         String chipType = scanner.nextLine();
 
-        orderItems.add("Chips: " + chipType);
+      //  orderItems.add("Chips: " + chipType);
+        Chips c = new Chips(chipType);
+        order.addItemToOrder(c);
         System.out.println("Chips added to order.");
     }
 
@@ -116,7 +158,8 @@ public class Main {
     private static void checkout() {
         System.out.println("\nCheckout:");
         System.out.println("Order Summary:");
-        for (String item : orderItems) {
+        for (MenuItem item : order.getItems()) {
+            System.out.println(item);
             System.out.println(item);
         }
         System.out.println("Total price: [calculate based on items]");
@@ -141,4 +184,62 @@ public class Main {
         }
         return scanner.nextInt();
     }
+
+    private static void displayMeatMenu(){
+        ArrayList<String> meatCopy = allToppings.getMeats();
+
+        System.out.println("Please select the meats you would like to add");
+        System.out.println("For more than 1 meat, separate by commas");
+        for(int i = 0; i<meatCopy.size();i++){
+            System.out.println(i+1 + ")" + meatCopy.get(i));
+        }
+
+    }
+
+    private static ArrayList<String> getMeatsFromUserToAddToSandwich(String[] selections){
+
+        ArrayList<String> meatToppings = new ArrayList<>();
+
+        for(String selection: selections){
+
+            int index = Integer.parseInt(selection) - 1;
+
+            String meat = allToppings.getMeats().get(index);
+
+            meatToppings.add(meat);
+        }
+
+        return meatToppings;
+    }
+
+    private static void displayCheeseMenu() {
+        ArrayList<String> cheeseCopy = allToppings.getCheeses();
+
+        System.out.println("Please select the cheeses you would like to add");
+        System.out.println("For more than 1 cheese, separate by commas");
+        for (int i = 0; i < cheeseCopy.size(); i++) {
+            System.out.println(i + 1 + ")" + cheeseCopy.get(i));
+        }
+
+    }
+    private static ArrayList<String> getCheesesFromUserToAddToSandwich(String[] selections){
+
+        ArrayList<String> cheeseToppings = new ArrayList<>();
+
+        for(String selection: selections){
+
+            int index = Integer.parseInt(selection) - 1;
+
+            String cheese = allToppings.getCheeses().get(index);
+
+            cheeseToppings.add(cheese);
+        }
+
+        return cheeseToppings;
+    }
+
+
+
+
+
 }

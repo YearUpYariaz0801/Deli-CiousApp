@@ -2,7 +2,7 @@ package com.pluralsight;
 
 import java.util.ArrayList;
 
-public class Sandwich implements CalculatePrice{
+public class Sandwich extends MenuItem implements CalculatePrice{
     private int size;
     private String bread;
     private ArrayList<String> regularToppings;
@@ -18,6 +18,7 @@ public class Sandwich implements CalculatePrice{
     private ArrayList<String> sides;
 
     public Sandwich() {
+        this.toasted = false;
     }
 
     public Sandwich(int size, String bread, ArrayList<String> regularToppings, ArrayList<String> meats, ArrayList<String> cheeses, boolean toasted, ArrayList<String> condiments, ArrayList <String> sides) {
@@ -110,7 +111,7 @@ public class Sandwich implements CalculatePrice{
 
     @Override
     public double getPrice() {
-        return 0;
+        return 5.00;
     }
 
 }

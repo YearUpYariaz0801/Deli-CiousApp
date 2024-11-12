@@ -1,6 +1,6 @@
 package com.pluralsight;
 
-public class Drink implements CalculatePrice {
+public class Drink extends MenuItem implements CalculatePrice {
     private String size;
     private String flavor;
 
@@ -46,5 +46,13 @@ public class Drink implements CalculatePrice {
 
 
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Drink{" +
+                "size='" + size + '\'' +
+                ", flavor='" + flavor + '\'' +
+                '}';
     }
 }
