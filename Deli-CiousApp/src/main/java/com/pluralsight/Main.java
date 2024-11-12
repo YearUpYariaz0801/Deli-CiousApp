@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static List<String> orderItems = new ArrayList<Sandwich>();
+    private static List<String> orderItems = new ArrayList<String> 1();
 
     public static void main(String[] args) {
         boolean running = true;
@@ -31,7 +31,8 @@ public class Main {
         orderItems.clear();
         boolean ordering = true;
 
-        //Allows the customers to add items to their order and check out or cancel the order, exit the order screen and clears the in progress order
+        //Allows the customers to add items to their order and check out or
+        //Cancel the order, exit the order screen and clears the in progress order
         while (ordering) {
             System.out.println("\nOrder Screen");
             System.out.println("1) Add Sandwich");
@@ -56,6 +57,8 @@ public class Main {
         }
     }
 
+    //Collects customer input and adds it to order items
+    //want this to call from sandwich class and write to order class
     private static void addSandwich() {
         System.out.println("\nAdding Sandwich:");
 
@@ -84,6 +87,7 @@ public class Main {
         System.out.println("Sandwich added to order.");
     }
 
+    //Drink selection
     private static void addDrink() {
         System.out.println("\nAdding Drink:");
 
@@ -97,6 +101,7 @@ public class Main {
         System.out.println("Drink added to order.");
     }
 
+    //Chip selection
     private static void addChips() {
         System.out.println("\nAdding Chips:");
 
@@ -107,6 +112,7 @@ public class Main {
         System.out.println("Chips added to order.");
     }
 
+    //Checkout menu, displays order summary, confirms order and creates a receipt file
     private static void checkout() {
         System.out.println("\nCheckout:");
         System.out.println("Order Summary:");

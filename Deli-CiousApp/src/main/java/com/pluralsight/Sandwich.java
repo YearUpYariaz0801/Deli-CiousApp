@@ -13,16 +13,21 @@ public class Sandwich implements CalculatePrice{
     private ArrayList<String> cheeses;
     private boolean toasted;
 
+    private ArrayList<String> condiments;
+
+    private ArrayList<String> sides;
+
     public Sandwich() {
     }
 
-    public Sandwich(int size, String bread, ArrayList<String> regularToppings, ArrayList<String> meats, ArrayList<String> cheeses, boolean toasted) {
+    public Sandwich(int size, String bread, ArrayList<String> regularToppings, ArrayList<String> meats, ArrayList<String> cheeses, boolean toasted, ArrayList<String> condiments, ArrayList <String> sides) {
         this.size = size;
         this.bread = bread;
         this.regularToppings = regularToppings;
         this.meats = meats;
         this.cheeses = cheeses;
         this.toasted = toasted;
+        this.condiments = condiments;
     }
 
     public int getSize() {
@@ -73,6 +78,22 @@ public class Sandwich implements CalculatePrice{
         this.toasted = toasted;
     }
 
+    public ArrayList<String> getCondiments() {
+        return condiments;
+    }
+
+    public void setSauces(ArrayList<String> condiments) {
+        this.condiments = condiments;
+    }
+
+    public ArrayList<String> getSides() {
+        return sides;
+    }
+
+    public void setSides(ArrayList<String> sides) {
+        this.sides = sides;
+    }
+
     @Override
     public String toString() {
         return "Sandwich{" +
@@ -82,6 +103,8 @@ public class Sandwich implements CalculatePrice{
                 ", meats=" + meats +
                 ", cheeses=" + cheeses +
                 ", toasted=" + toasted +
+                ", condiments=" + condiments +
+                ", sides=" + sides +
                 '}';
     }
 
