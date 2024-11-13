@@ -83,7 +83,7 @@ public class Sandwich extends MenuItem implements CalculatePrice{
         return condiments;
     }
 
-    public void setSauces(ArrayList<String> condiments) {
+    public void setCondiments(ArrayList<String> condiments) {
         this.condiments = condiments;
     }
 

@@ -38,14 +38,16 @@ public class Toppings {
         cheeses.add ("Muenster");
         cheeses.add ("Pepperjack");
 
-        condiments.add ("American");
-        condiments.add ("Provolone");
-        condiments.add ("Cheddar");
-        condiments.add ("Swiss");
-        condiments.add ("Muenster");
-        condiments.add ("Pepperjack");
+        condiments.add ("Mayo");
+        condiments.add ("Mustard");
+        condiments.add ("Ketchup");
+        condiments.add ("Ranch");
+        condiments.add ("Thousand Island");
+        condiments.add ("Vinaigrette");
 
         //add side array
+        sides.add("Au Ju");
+        sides.add("Sauce");
     }
 
 
@@ -58,6 +60,18 @@ public class Toppings {
 
     public ArrayList<String> getCheeses(){
         return cheeses;
+    }
+
+    public ArrayList<String> getRegularToppings() {
+        return regularToppings;
+    }
+
+    public ArrayList<String> getCondiments() {
+        return condiments;
+    }
+
+    public ArrayList<String> getSides() {
+        return sides;
     }
 
     public void addToppingMenu() {

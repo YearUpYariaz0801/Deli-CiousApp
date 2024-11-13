@@ -82,7 +82,7 @@ public class Main {
         String[] selections = meatSelection.split(",");
 
         //helper method to go through choices and add it to Sandwich class meatArr
-      // ArrayList<String> meatToppingsArr = getMeatsFrmomUserToAddToSandwich(selections);
+      // ArrayList<String> meatToppingsArr = getMeatsFromUserToAddToSandwich(selections);
 
         s.setMeats(getMeatsFromUserToAddToSandwich(selections));
         System.out.println("Meats have been added to your sandwich");
@@ -97,26 +97,45 @@ public class Main {
 
         s.setCheeses(getCheesesFromUserToAddToSandwich(selections));
         System.out.println("Cheeses have been added to your sandwich");
+//================================Add Regular Toppings===========================================//
+        System.out.print("Regular Toppings Menu ");
+        displayRegularToppingsMenu();
+        String regularToppingsSelection = Console.PromptForString();
+        selections = regularToppingsSelection.split(",");
 
-        //regular toppings
+        //helper method to go through choices and add it to Sandwich class cheeseArr
+        // ArrayList<String> cheeseToppingsArr = getCheesesFromUserToAddToSandwich(selections);
 
-        System.out.print("Other toppings (comma separated): ");
-        String toppings = scanner.nextLine();
-
+        s.setRegularToppings(getRegularToppingsFromUserToAddToSandwich(selections));
+        System.out.println("Your chosen regular toppings have been added to your sandwich");
+//================================Add Condiments===========================================//
         //
-        System.out.print("Select sauces (comma separated): ");
-        String sauces = scanner.nextLine();
+        System.out.print("Condiments Menu ");
+        displayCondimentMenu();
+        String condimentSelection = Console.PromptForString();
+        selections = condimentSelection.split(",");
 
+        //helper method to go through choices and add it to Sandwich class condimentsArray
+        s.setCondiments(getCondimentsFromUserToAddToSandwich(selections));
+        System.out.println("Your chosen condiments have been added to your sandwich");
+//================================Add Sides===========================================//
+        System.out.print("Sides Menu ");
+        displaySideMenu();
+        String sideSelection = Console.PromptForString();
+        selections = sideSelection.split(",");
+
+        //helper method to go through choices and add it to Sandwich class sidesArray
+        s.setSides(getSidesFromUserToAddToSandwich(selections));
+        System.out.println("Your chosen sides have been added to your sandwich");
+
+//================================Toast Sandwich===========================================//
         String toasted = Console.PromptForString("Would you like the sandwich toasted? (yes/no): ");
         if(toasted.toLowerCase()=="yes"){
             s.setToasted(true);
         }
+        // this should be called after you have completed the entire sandwich!!
 
-
-
-        // this shouldbe called after you have completed the entire sandwich!!
-
-      //  order.addSandwich(s);
+        //  order.addSandwich(s);
        order.addItemToOrder(s);
 
        // orderItems.add("Sandwich: " + size + " " + bread + " with " + meat + ", " + cheese + ", toppings: " + toppings + ", sauces: " + sauces + ", toasted: " + toasted);
@@ -238,8 +257,86 @@ public class Main {
         return cheeseToppings;
     }
 
+    private static void displayRegularToppingsMenu(){
+        ArrayList<String> regularToppingCopy = allToppings.getRegularToppings();
 
+        System.out.println("Please select the regular toppings you would like to add");
+        System.out.println("For more than 1 regular topping, separate by commas");
+        for(int i = 0; i<regularToppingCopy.size();i++){
+            System.out.println(i+1 + ")" + regularToppingCopy.get(i));
+        }
 
+    }
+
+    private static ArrayList<String> getRegularToppingsFromUserToAddToSandwich(String[] selections){
+
+        ArrayList<String> regularToppingToppings = new ArrayList<>();
+
+        for(String selection: selections){
+
+            int index = Integer.parseInt(selection) - 1;
+
+            String regularTopping = allToppings.getRegularToppings().get(index);
+
+            regularToppingToppings.add(regularTopping);
+        }
+
+        return regularToppingToppings;
+    }
+
+    private static void displayCondimentMenu(){
+        ArrayList<String> condimentCopy = allToppings.getCondiments();
+
+        System.out.println("Please select the condiments you would like to add");
+        System.out.println("For more than 1 condiment, separate by commas");
+        for(int i = 0; i<condimentCopy.size();i++){
+            System.out.println(i+1 + ")" + condimentCopy.get(i));
+        }
+
+    }
+
+    private static ArrayList<String> getCondimentsFromUserToAddToSandwich(String[] selections){
+
+        ArrayList<String> condimentToppings = new ArrayList<>();
+
+        for(String selection: selections){
+
+            int index = Integer.parseInt(selection) - 1;
+
+            String condiment = allToppings.getMeats().get(index);
+
+            condimentToppings.add(condiment);
+        }
+
+        return condimentToppings;
+    }
+
+    private static void displaySideMenu(){
+        ArrayList<String> sideCopy = allToppings.getCondiments();
+
+        System.out.println("Please select the sides you would like to add");
+        System.out.println("For more than 1 side, separate by commas");
+        for(int i = 0; i<sideCopy.size();i++){
+            System.out.println(i+1 + ")" + sideCopy.get(i));
+        }
+
+    }
+
+    private static ArrayList<String> getSidesFromUserToAddToSandwich(String[] selections){
+
+        ArrayList<String> sideToppings = new ArrayList<>();
+
+        for(String selection: selections){
+
+            int index = Integer.parseInt(selection) - 1;
+
+            String side = allToppings.getSides().get(index);
+
+            sideToppings.add(side);
+        }
+
+        return sideToppings;
+    }
 
 
 }
