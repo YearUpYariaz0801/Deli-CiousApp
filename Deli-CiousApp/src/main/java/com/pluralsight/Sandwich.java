@@ -111,7 +111,101 @@ public class Sandwich extends MenuItem implements CalculatePrice{
 
     @Override
     public double getPrice() {
-        return 5.00;
+        double price =0;
+
+        switch(this.size){
+
+            case 4:
+                price += 5.50;
+
+                //add meats
+               if(!meats.isEmpty()){
+                   if(meats.size() >= 1){
+                       price+=1;
+
+                       for(int i = meats.size()-1; i > 0; --i){
+                           price += .50;
+                       }
+                   }
+               }
+
+                //add cheese
+                if(!cheeses.isEmpty()){
+
+                    if(cheeses.size() >= 1){
+                        price+= .75;
+
+                        for(int i = cheeses.size()-1; i > 0; --i){
+                            price += .30;
+                        }
+                    }
+                }
+
+break;
+            case 8:
+                price += 7;
+
+                //add meats
+                if(!meats.isEmpty()){
+                    if(meats.size() >= 1){
+                        price+= 2;
+
+                        for(int i = meats.size()-1; i > 0; --i){
+                            price += 1;
+                        }
+                    }
+                }
+
+                //add cheese
+                if(!cheeses.isEmpty()){
+
+                    if(cheeses.size() >= 1){
+                        price+= 1.50;
+
+                        for(int i = cheeses.size()-1; i > 0; --i){
+                            price += .60;
+                        }
+                    }
+                }
+
+
+
+break;
+            case 12:
+                price += 8.50;
+
+                //add meats
+                if(!meats.isEmpty()){
+                    if(meats.size() >= 1){
+                        price+=3;
+
+                        for(int i = meats.size()-1; i > 0; --i){
+                            price += 1.50;
+                        }
+                    }
+                }
+
+                //add cheese
+                if(!cheeses.isEmpty()){
+
+                    if(cheeses.size() >= 1){
+                        price+= 2.25;
+
+                        for(int i = cheeses.size()-1; i > 0; --i){
+                            price += .90;
+                        }
+                    }
+                }
+
+
+                break;
+        }
+
+
+
+        return price;
     }
+
+
 
 }

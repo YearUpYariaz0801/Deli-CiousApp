@@ -23,6 +23,7 @@ public class Toppings {
         regularToppings.add ("Pickles");
         regularToppings.add ("Guacamole");
         regularToppings.add ("Mushrooms");
+        regularToppings.add("None");
 
         meats.add ("Steak");
         meats.add ("Ham");
@@ -30,6 +31,7 @@ public class Toppings {
         meats.add ("Roast Beef");
         meats.add ("Chicken");
         meats.add ("Bacon");
+        meats.add("None");
 
         cheeses.add ("American");
         cheeses.add ("Provolone");
@@ -37,6 +39,7 @@ public class Toppings {
         cheeses.add ("Swiss");
         cheeses.add ("Muenster");
         cheeses.add ("Pepperjack");
+        cheeses.add("None");
 
         condiments.add ("Mayo");
         condiments.add ("Mustard");
@@ -44,10 +47,12 @@ public class Toppings {
         condiments.add ("Ranch");
         condiments.add ("Thousand Island");
         condiments.add ("Vinaigrette");
+        condiments.add("None");
 
         //add side array
         sides.add("Au Ju");
         sides.add("Sauce");
+        sides.add("None");
     }
 
 

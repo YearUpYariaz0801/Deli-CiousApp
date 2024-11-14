@@ -83,6 +83,14 @@ public class Order implements CalculatePrice {
 
     @Override
     public double getPrice() {
-        return 0;
+        double total = 0;
+
+        for(MenuItem item: items){
+            total += item.getPrice();
+        }
+
+
+
+        return total;
     }
 }

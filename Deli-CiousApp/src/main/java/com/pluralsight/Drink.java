@@ -41,7 +41,6 @@ public class Drink extends MenuItem implements CalculatePrice {
                return 3.00;
             default:
                 System.out.println("Sorry, invalid entry. Please select from the size options above!");
-
         }
 
 

@@ -67,11 +67,11 @@ public class Main {
         System.out.println("\nAdding Sandwich:");
         Sandwich s = new Sandwich();
 
-        System.out.print("Select your bread: ");
+        System.out.print("Select your bread (White/Wheat/Rye/Wrap): ");
         String bread = Console.PromptForString();
         s.setBread(bread);
 
-        int size = Console.PromptForInt("Sandwich size: ");
+        int size = Console.PromptForInt("Sandwich size (4/8/12): ");
         s.setSize(size);
 
         //how to make s look like the sandwich described above..
@@ -130,9 +130,12 @@ public class Main {
 
 //================================Toast Sandwich===========================================//
         String toasted = Console.PromptForString("Would you like the sandwich toasted? (yes/no): ");
-        if(toasted.toLowerCase()=="yes"){
+        //I want to change to simple boolean because continues to throw error
+        if(toasted.toLowerCase().equals("yes")){
             s.setToasted(true);
         }
+
+
         // this should be called after you have completed the entire sandwich!!
 
         //  order.addSandwich(s);
@@ -179,16 +182,16 @@ public class Main {
         System.out.println("Order Summary:");
         for (MenuItem item : order.getItems()) {
             System.out.println(item);
-            System.out.println(item);
+          //  System.out.println(item);
         }
-        System.out.println("Total price: [calculate based on items]");
+        System.out.println("Total price: " + order.getPrice());
 
         System.out.print("Confirm order? (yes/no): ");
         String confirm = scanner.nextLine();
         if (confirm.equalsIgnoreCase("yes")) {
             System.out.println("Order confirmed. Creating receipt...");
             // Logic to create receipt file
-            orderItems.clear();
+
         } else {
             System.out.println("Order canceled.");
             orderItems.clear();
@@ -219,16 +222,23 @@ public class Main {
 
         ArrayList<String> meatToppings = new ArrayList<>();
 
-        for(String selection: selections){
+        if(selections[0].equals("7")){
 
-            int index = Integer.parseInt(selection) - 1;
+                return new ArrayList<>();
 
-            String meat = allToppings.getMeats().get(index);
+        } else {
 
-            meatToppings.add(meat);
+            for (String selection : selections) {
+
+                int index = Integer.parseInt(selection) - 1;
+
+                String meat = allToppings.getMeats().get(index);
+
+                meatToppings.add(meat);
+            }
+            return meatToppings;
         }
 
-        return meatToppings;
     }
 
     private static void displayCheeseMenu() {
@@ -244,7 +254,7 @@ public class Main {
     private static ArrayList<String> getCheesesFromUserToAddToSandwich(String[] selections){
 
         ArrayList<String> cheeseToppings = new ArrayList<>();
-
+        
         for(String selection: selections){
 
             int index = Integer.parseInt(selection) - 1;
@@ -303,7 +313,7 @@ public class Main {
 
             int index = Integer.parseInt(selection) - 1;
 
-            String condiment = allToppings.getMeats().get(index);
+            String condiment = allToppings.getCondiments().get(index);
 
             condimentToppings.add(condiment);
         }
@@ -312,7 +322,7 @@ public class Main {
     }
 
     private static void displaySideMenu(){
-        ArrayList<String> sideCopy = allToppings.getCondiments();
+        ArrayList<String> sideCopy = allToppings.getSides();
 
         System.out.println("Please select the sides you would like to add");
         System.out.println("For more than 1 side, separate by commas");
