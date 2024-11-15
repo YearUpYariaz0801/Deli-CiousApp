@@ -209,6 +209,9 @@ break;
         return price;
     }
 
+    public double calculateTotalCost(Sandwich Sandwich) {
+        return 0;
+    }
 
 
 }

@@ -14,9 +14,8 @@ import java.time.format.DateTimeFormatter;
 
 public class Receipts {
     // Method to generate and save the receipt
-    public static <Topping> void generateReceipt(Order order, String customerName) {
-
-        // Create a StringBuilder object, named receipt, which is created to construct the receipt text.
+    public static void generateReceipt(Order order, String customerName) {
+        // Create a StringBuilder object to construct the receipt text
         StringBuilder receipt = new StringBuilder();
 
         // Append receipt header information
@@ -26,31 +25,25 @@ public class Receipts {
         receipt.append("-----------------------------\n");
 
         // Iterate through each item in the order and append its details to the receipt
-        for (MenuItem item : order.items) {
-            if (item instanceof Sandwich) { //
+        for (MenuItem item : order.getItems()) {
+            if (item instanceof Sandwich) {
                 Sandwich sandwich = (Sandwich) item;
-               // receipt.append("Item: ").append(sandwich.name).append("\n");
-                receipt.append("  Size: ").append(sandwich.size).append("\n");
-                receipt.append("  Bread: ").append(sandwich.bread).append("\n");
-                receipt.append("  Toasted: ").append(sandwich.toasted ? "Yes" : "No").append("\n");
+                receipt.append("  Size: ").append(sandwich.getSize()).append("\n");
+                receipt.append("  Bread: ").append(sandwich.getBread()).append("\n");
+                receipt.append("  Toasted: ").append(sandwich.isToasted() ? "Yes" : "No").append("\n");
                 receipt.append("  Toppings:\n");
-                for (String topping : sandwich.regularToppings) {
-                    receipt.append("    - ").append(topping.name).append(" ($").append(topping.price(sandwich.size)).append(")\n");
+                for (String topping : sandwich.getRegularToppings()) {
+                    receipt.append("    - ").append(topping).append("\n");
                 }
-                receipt.append("  Extra Cheese: ").append(sandwich.extraCheese > 0 ? "Yes" : "No").append("\n");
-                receipt.append("  Extra Meat: ").append(sandwich.extraMeat > 0 ? "Yes" : "No").append("\n");
-                receipt.append("  Total: $").append(sandwich.calculateTotalCost()).append("\n");
+
+                receipt.append("  Total: $").append(sandwich.calculateTotalCost(new Sandwich())).append("\n");
             } else if (item instanceof Drink) {
                 Drink drink = (Drink) item;
-                // Append drink details, including name, size, and price
-                receipt.append("Drink: ").append(drink.getFlavor()).append(" (").append(drink.size).append(") - $").append(drink.getPrice()).append("\n");
+                receipt.append("Drink: ").append(drink.getFlavor()).append(" (").append(drink.getSize()).append(") - $").append(drink.getPrice()).append("\n");
             } else if (item instanceof Chips) {
                 Chips chips = (Chips) item;
-                // Append chips details, including name and price fixed at 1.50
                 receipt.append("Chips: ").append(chips.getChip()).append(" - $").append(chips.getPrice()).append("\n");
-            } else {
-                // Append details for any other item types
-                receipt.append("Item: ").append(item.getPrice()).append(" - $").append(item.getPrice()).append("\n");
+
             }
         }
 

@@ -1,5 +1,6 @@
 package com.pluralsight.BaseClasses;
 
+import com.pluralsight.SandwichBuilder.Toppings;
 import com.pluralsight.Utilities.CalculatePrice;
 import com.pluralsight.OtherOrderItems.Chips;
 import com.pluralsight.OtherOrderItems.Drink;
@@ -9,16 +10,13 @@ import java.util.ArrayList;
 
 public class Order implements CalculatePrice {
     public int orderNo;
-   public ArrayList<Sandwich> sandwiches;
-
+    public ArrayList<Sandwich> sandwiches;
     public ArrayList<Chips> chips;
     public ArrayList<Drink> drinks;
-
     public ArrayList<MenuItem> items;
 
-    //constructors - getters - setters - to string hand
-
     public static int nextOrderNumber = 1;
+
     public Order() {
         this.orderNo = nextOrderNumber++;
         this.sandwiches = new ArrayList<>();
@@ -26,8 +24,6 @@ public class Order implements CalculatePrice {
         this.drinks = new ArrayList<>();
         this.items = new ArrayList<>();
     }
-
-
 
     public int getOrderNo() {
         return orderNo;
@@ -45,7 +41,7 @@ public class Order implements CalculatePrice {
         this.sandwiches = sandwiches;
     }
 
-    public void addSandwich(Sandwich sandwich){
+    public void addSandwich(Sandwich sandwich) {
         this.sandwiches.add(sandwich);
     }
 
@@ -72,7 +68,8 @@ public class Order implements CalculatePrice {
     public void setItems(ArrayList<MenuItem> items) {
         this.items = items;
     }
-    public void addItemToOrder(MenuItem item){
+
+    public void addItemToOrder(MenuItem item) {
         this.items.add(item);
     }
 
@@ -81,39 +78,41 @@ public class Order implements CalculatePrice {
         return "Order{" +
                 "orderNo=" + orderNo +
                 ", sandwiches=" + sandwiches +
-                ", chips='" + chips + '\'' +
-                ", drink=" + drinks +
+                ", chips=" + chips +
+                ", drinks=" + drinks +
                 '}';
     }
 
-    // Method to calculate the total price of the order
     public double calculateTotal() {
-        totalPrice = 0;
+        double totalPrice = 0;
         for (MenuItem item : items) {
             if (item instanceof Sandwich) {
                 Sandwich sandwich = (Sandwich) item;
-                totalPrice += sandwich.calculateTotalCost();
+                totalPrice += sandwich.calculateTotalCost(new Sandwich());
             } else {
                 totalPrice += item.calculatePrice();
             }
         }
         return totalPrice;
     }
+
     @Override
     public double getPrice() {
         double total = 0;
-
-        for(MenuItem item: items){
+        for (MenuItem item : items) {
             total += item.getPrice();
         }
-
-
-
         return total;
     }
-}
+
+    @Override
+    public double calculatePrice() {
+        return 0;
+    }
+
+
+    public double calculateTotalCost(Sandwich sandwich, Toppings toppings, Drink drink, Chips chips) {
+        return 0;
+    }
 
 }
-
-}
-

@@ -154,18 +154,17 @@ public class Main {
     //Drink selection
     public static void addDrink() {
 
-
         System.out.println("\nAdding Drink:");
 
         System.out.print("Select drink size: ");
         String size = scanner.nextLine().toUpperCase();
-
+        scanner.nextLine();
         System.out.print("Select drink flavor: ");
         String flavor = scanner.nextLine();
 
         Drink d = new Drink(size,flavor);
         order.addItemToOrder(d);
-       // orderItems.add("Drink: " + size + " " + flavor);
+        orderItems.add("Drink: " + size + " " + flavor);
         System.out.println("Drink added to order.");
     }
 
@@ -188,7 +187,7 @@ public class Main {
         System.out.println("Order Summary:");
         for (MenuItem item : order.getItems()) {
             System.out.println(item);
-          //  System.out.println(item);
+
         }
         System.out.println("Total price: " + order.getPrice());
 

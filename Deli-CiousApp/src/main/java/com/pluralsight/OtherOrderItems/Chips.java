@@ -1,6 +1,8 @@
 package com.pluralsight.OtherOrderItems;
 
 import com.pluralsight.BaseClasses.MenuItem;
+import com.pluralsight.SandwichBuilder.Sandwich;
+import com.pluralsight.SandwichBuilder.Toppings;
 import com.pluralsight.Utilities.CalculatePrice;
 
 public class Chips extends MenuItem implements CalculatePrice {
@@ -24,6 +26,13 @@ public class Chips extends MenuItem implements CalculatePrice {
     @Override
     public double getPrice() {
         return price;
+    }
+
+
+
+
+    public double calculateTotalCost(Chips price) {
+        return 0;
     }
 
     @Override

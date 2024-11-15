@@ -2,11 +2,16 @@ package com.pluralsight.BaseClasses;
 
 import com.pluralsight.Utilities.CalculatePrice;
 
-public class MenuItem implements CalculatePrice {
+public abstract class MenuItem implements CalculatePrice {
 
 
     @Override
     public double getPrice() {
+        return 0;
+    }
+
+    @Override
+    public double calculatePrice() {
         return 0;
     }
 

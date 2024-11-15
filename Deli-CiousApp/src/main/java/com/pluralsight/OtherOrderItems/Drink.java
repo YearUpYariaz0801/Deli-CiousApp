@@ -4,23 +4,22 @@ import com.pluralsight.BaseClasses.MenuItem;
 import com.pluralsight.Utilities.CalculatePrice;
 
 public class Drink extends MenuItem implements CalculatePrice {
-   public String size;
+   public String drinkSize;
     public String flavor;
 
-    public Drink() {
-    }
+
 
     public Drink(String size, String flavor) {
-        this.size = size;
+        this.drinkSize = size;
         this.flavor = flavor;
     }
 
     public String getSize() {
-        return size;
+        return drinkSize;
     }
 
     public void setSize(String size) {
-        this.size = size;
+        this.drinkSize = size;
     }
 
     public String getFlavor() {
@@ -31,30 +30,35 @@ public class Drink extends MenuItem implements CalculatePrice {
         this.flavor = flavor;
     }
 // add toString later
-    @Override
-    public double getPrice() {
-        switch (this.size){
-            case "S":
-                return 2.00;
 
-            case "M":
-                return  2.50;
+    public static double getPriceForDrinkSize(String size) {
+        double price = switch (size) {
+            case "small" -> 1.50;
+            case "medium" -> 2.00;
+            case "large" -> 2.50;
+            default -> -1; //\ Invalid size } return price;
 
-            case "L":
-               return 3.00;
-            default:
-                System.out.println("Sorry, invalid entry. Please select from the size options above!");
-        }
+//                // Handle any other cases, if needed
+//                throw new IllegalArgumentException("Invalid drink size: " + this.drinkSize);
+        };
+
+         System.out.println("Sorry, invalid entry. Please select from the size options above!");
+        return price;
+    }
 
 
-        return 0;
+
+
+
+    public String calculateTotalCost(Drink drink) {
+        return drinkSize;
     }
 
     @Override
     public String toString() {
-        return "Drink{" +
-                "size='" + size + '\'' +
-                ", flavor='" + flavor + '\'' +
-                '}';
+        return "Drink" +
+                ", size =" + drinkSize + '\'' +
+                ", flavor='" + flavor + '\''
+                ;
     }
 }
