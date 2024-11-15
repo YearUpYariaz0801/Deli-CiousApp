@@ -1,4 +1,7 @@
-package com.pluralsight;
+package com.pluralsight.OtherOrderItems;
+
+import com.pluralsight.BaseClasses.MenuItem;
+import com.pluralsight.Utilities.CalculatePrice;
 
 public class Chips extends MenuItem implements CalculatePrice {
     public  double  price = 1.50;

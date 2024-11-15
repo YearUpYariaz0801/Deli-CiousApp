@@ -1,8 +1,11 @@
-package com.pluralsight;
+package com.pluralsight.OtherOrderItems;
+
+import com.pluralsight.BaseClasses.MenuItem;
+import com.pluralsight.Utilities.CalculatePrice;
 
 public class Drink extends MenuItem implements CalculatePrice {
-    private String size;
-    private String flavor;
+   public String size;
+    public String flavor;
 
     public Drink() {
     }

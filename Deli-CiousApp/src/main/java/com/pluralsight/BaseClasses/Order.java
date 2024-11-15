@@ -1,19 +1,24 @@
-package com.pluralsight;
+package com.pluralsight.BaseClasses;
+
+import com.pluralsight.Utilities.CalculatePrice;
+import com.pluralsight.OtherOrderItems.Chips;
+import com.pluralsight.OtherOrderItems.Drink;
+import com.pluralsight.SandwichBuilder.Sandwich;
 
 import java.util.ArrayList;
 
 public class Order implements CalculatePrice {
-    private int orderNo;
-    private ArrayList<Sandwich> sandwiches;
+    public int orderNo;
+   public ArrayList<Sandwich> sandwiches;
 
-    private ArrayList<Chips> chips;
-    private ArrayList<Drink> drinks;
+    public ArrayList<Chips> chips;
+    public ArrayList<Drink> drinks;
 
-    private ArrayList<MenuItem> items;
+    public ArrayList<MenuItem> items;
 
     //constructors - getters - setters - to string hand
 
-    private static int nextOrderNumber = 1;
+    public static int nextOrderNumber = 1;
     public Order() {
         this.orderNo = nextOrderNumber++;
         this.sandwiches = new ArrayList<>();
@@ -81,6 +86,19 @@ public class Order implements CalculatePrice {
                 '}';
     }
 
+    // Method to calculate the total price of the order
+    public double calculateTotal() {
+        totalPrice = 0;
+        for (MenuItem item : items) {
+            if (item instanceof Sandwich) {
+                Sandwich sandwich = (Sandwich) item;
+                totalPrice += sandwich.calculateTotalCost();
+            } else {
+                totalPrice += item.calculatePrice();
+            }
+        }
+        return totalPrice;
+    }
     @Override
     public double getPrice() {
         double total = 0;
@@ -94,3 +112,8 @@ public class Order implements CalculatePrice {
         return total;
     }
 }
+
+}
+
+}
+

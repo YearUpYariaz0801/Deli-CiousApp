@@ -1,4 +1,4 @@
-package com.pluralsight;
+package com.pluralsight.SandwichBuilder;
 
 import java.util.ArrayList;
 

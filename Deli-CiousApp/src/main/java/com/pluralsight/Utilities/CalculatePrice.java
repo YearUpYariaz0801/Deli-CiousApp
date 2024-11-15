@@ -1,4 +1,4 @@
-package com.pluralsight;
+package com.pluralsight.Utilities;
 
 public interface CalculatePrice {
     double getPrice();

@@ -1,4 +1,6 @@
-package com.pluralsight;
+package com.pluralsight.BaseClasses;
+
+import com.pluralsight.Utilities.CalculatePrice;
 
 public class MenuItem implements CalculatePrice {
 

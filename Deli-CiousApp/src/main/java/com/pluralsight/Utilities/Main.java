@@ -1,13 +1,20 @@
-package com.pluralsight;
+package com.pluralsight.Utilities;
+import com.pluralsight.BaseClasses.MenuItem;
+import com.pluralsight.BaseClasses.Order;
+import com.pluralsight.OtherOrderItems.Chips;
+import com.pluralsight.OtherOrderItems.Drink;
+import com.pluralsight.SandwichBuilder.Sandwich;
+import com.pluralsight.SandwichBuilder.Toppings;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 public class Main {
-    private static final Scanner scanner = new Scanner(System.in);
-    private static List<String> orderItems = new ArrayList<String>();
-    private static Toppings allToppings = new Toppings();
+    public static final Scanner scanner = new Scanner(System.in);
+    public static List<String> orderItems = new ArrayList<String>();
+    public static Toppings allToppings = new Toppings();
 
-    private static Order order;
+   public static Order order;
     public static void main(String[] args) {
         boolean running = true;
 
@@ -29,7 +36,7 @@ public class Main {
         System.out.println("Thank you for visiting!");
     }
 
-    private static void startNewOrder() {
+    public static void startNewOrder() {
         order = new Order();
 
        // orderItems.clear();
@@ -63,7 +70,7 @@ public class Main {
 
     //Collects customer input and adds it to order items
     //want this to call from sandwich class and write to order class
-    private static void addSandwich() {
+    public static void addSandwich() {
         System.out.println("\nAdding Sandwich:");
         Sandwich s = new Sandwich();
 
@@ -104,7 +111,6 @@ public class Main {
         selections = regularToppingsSelection.split(",");
 
         //helper method to go through choices and add it to Sandwich class cheeseArr
-        // ArrayList<String> cheeseToppingsArr = getCheesesFromUserToAddToSandwich(selections);
 
         s.setRegularToppings(getRegularToppingsFromUserToAddToSandwich(selections));
         System.out.println("Your chosen regular toppings have been added to your sandwich");
@@ -146,7 +152,7 @@ public class Main {
     }
 
     //Drink selection
-    private static void addDrink() {
+    public static void addDrink() {
 
 
         System.out.println("\nAdding Drink:");
@@ -164,7 +170,7 @@ public class Main {
     }
 
     //Chip selection
-    private static void addChips() {
+   public static void addChips() {
         System.out.println("\nAdding Chips:");
 
         System.out.print("Select chip type: ");
@@ -177,7 +183,7 @@ public class Main {
     }
 
     //Checkout menu, displays order summary, confirms order and creates a receipt file
-    private static void checkout() {
+    public static void checkout() {
         System.out.println("\nCheckout:");
         System.out.println("Order Summary:");
         for (MenuItem item : order.getItems()) {
@@ -198,7 +204,7 @@ public class Main {
         }
     }
 
-    private static int getChoice() {
+    public static int getChoice() {
         System.out.print("Enter your choice: ");
         while (!scanner.hasNextInt()) {
             System.out.print("Invalid input. Enter a number: ");
@@ -207,7 +213,7 @@ public class Main {
         return scanner.nextInt();
     }
 
-    private static void displayMeatMenu(){
+    public static void displayMeatMenu(){
         ArrayList<String> meatCopy = allToppings.getMeats();
 
         System.out.println("Please select the meats you would like to add");
@@ -218,7 +224,7 @@ public class Main {
 
     }
 
-    private static ArrayList<String> getMeatsFromUserToAddToSandwich(String[] selections){
+    public static ArrayList<String> getMeatsFromUserToAddToSandwich(String[] selections){
 
         ArrayList<String> meatToppings = new ArrayList<>();
 
@@ -241,7 +247,7 @@ public class Main {
 
     }
 
-    private static void displayCheeseMenu() {
+   public static void displayCheeseMenu() {
         ArrayList<String> cheeseCopy = allToppings.getCheeses();
 
         System.out.println("Please select the cheeses you would like to add");
@@ -251,10 +257,10 @@ public class Main {
         }
 
     }
-    private static ArrayList<String> getCheesesFromUserToAddToSandwich(String[] selections){
+    public static ArrayList<String> getCheesesFromUserToAddToSandwich(String[] selections){
 
         ArrayList<String> cheeseToppings = new ArrayList<>();
-        
+
         for(String selection: selections){
 
             int index = Integer.parseInt(selection) - 1;
@@ -267,7 +273,7 @@ public class Main {
         return cheeseToppings;
     }
 
-    private static void displayRegularToppingsMenu(){
+    public static void displayRegularToppingsMenu(){
         ArrayList<String> regularToppingCopy = allToppings.getRegularToppings();
 
         System.out.println("Please select the regular toppings you would like to add");
@@ -278,7 +284,7 @@ public class Main {
 
     }
 
-    private static ArrayList<String> getRegularToppingsFromUserToAddToSandwich(String[] selections){
+    public static ArrayList<String> getRegularToppingsFromUserToAddToSandwich(String[] selections){
 
         ArrayList<String> regularToppingToppings = new ArrayList<>();
 
@@ -294,7 +300,7 @@ public class Main {
         return regularToppingToppings;
     }
 
-    private static void displayCondimentMenu(){
+    public static void displayCondimentMenu(){
         ArrayList<String> condimentCopy = allToppings.getCondiments();
 
         System.out.println("Please select the condiments you would like to add");
@@ -305,7 +311,7 @@ public class Main {
 
     }
 
-    private static ArrayList<String> getCondimentsFromUserToAddToSandwich(String[] selections){
+    public static ArrayList<String> getCondimentsFromUserToAddToSandwich(String[] selections){
 
         ArrayList<String> condimentToppings = new ArrayList<>();
 
@@ -321,7 +327,7 @@ public class Main {
         return condimentToppings;
     }
 
-    private static void displaySideMenu(){
+    public static void displaySideMenu(){
         ArrayList<String> sideCopy = allToppings.getSides();
 
         System.out.println("Please select the sides you would like to add");
@@ -332,7 +338,7 @@ public class Main {
 
     }
 
-    private static ArrayList<String> getSidesFromUserToAddToSandwich(String[] selections){
+    public static ArrayList<String> getSidesFromUserToAddToSandwich(String[] selections){
 
         ArrayList<String> sideToppings = new ArrayList<>();
 

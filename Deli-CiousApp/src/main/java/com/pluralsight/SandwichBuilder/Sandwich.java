@@ -1,21 +1,24 @@
-package com.pluralsight;
+package com.pluralsight.SandwichBuilder;
+
+import com.pluralsight.BaseClasses.MenuItem;
+import com.pluralsight.Utilities.CalculatePrice;
 
 import java.util.ArrayList;
 
-public class Sandwich extends MenuItem implements CalculatePrice{
-    private int size;
-    private String bread;
-    private ArrayList<String> regularToppings;
+public class Sandwich extends MenuItem implements CalculatePrice {
+    public int size;
+    public String bread;
+    public ArrayList<String> regularToppings;
 
     //this should be probably be reformatted so that all of the toppings are in 1 array..
     // or these 2 arrays are combined to be "premium toppings"
-    private ArrayList<String> meats;
-    private ArrayList<String> cheeses;
-    private boolean toasted;
+    public ArrayList<String> meats;
+    public ArrayList<String> cheeses;
+    public boolean toasted;
 
-    private ArrayList<String> condiments;
+    public ArrayList<String> condiments;
 
-    private ArrayList<String> sides;
+    public ArrayList<String> sides;
 
     public Sandwich() {
         this.toasted = false;
