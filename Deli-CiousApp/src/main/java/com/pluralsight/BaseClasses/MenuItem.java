@@ -6,14 +6,8 @@ public abstract class MenuItem implements CalculatePrice {
 
 
     @Override
-    public double getPrice() {
-        return 0;
-    }
+    public abstract double getPrice();
 
-    @Override
-    public double calculatePrice() {
-        return 0;
-    }
 
     // you can add in logic as you so please
 }

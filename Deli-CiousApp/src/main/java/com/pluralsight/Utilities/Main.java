@@ -69,7 +69,7 @@ public class Main {
     }
 
     //Collects customer input and adds it to order items
-    //want this to call from sandwich class and write to order class
+    //Calls from sandwich class and writes to order class
     public static void addSandwich() {
         System.out.println("\nAdding Sandwich:");
         Sandwich s = new Sandwich();
@@ -88,8 +88,7 @@ public class Main {
         String meatSelection = Console.PromptForString();
         String[] selections = meatSelection.split(",");
 
-        //helper method to go through choices and add it to Sandwich class meatArr
-      // ArrayList<String> meatToppingsArr = getMeatsFromUserToAddToSandwich(selections);
+        //Helper method to go through choices and add it to Sandwich class meatArray
 
         s.setMeats(getMeatsFromUserToAddToSandwich(selections));
         System.out.println("Meats have been added to your sandwich");
@@ -99,8 +98,7 @@ public class Main {
         String cheeseSelection = Console.PromptForString();
         selections = cheeseSelection.split(",");
 
-        //helper method to go through choices and add it to Sandwich class cheeseArr
-        // ArrayList<String> cheeseToppingsArr = getCheesesFromUserToAddToSandwich(selections);
+        //Helper method to go through choices and add it to Sandwich class cheeseArray
 
         s.setCheeses(getCheesesFromUserToAddToSandwich(selections));
         System.out.println("Cheeses have been added to your sandwich");
@@ -110,18 +108,18 @@ public class Main {
         String regularToppingsSelection = Console.PromptForString();
         selections = regularToppingsSelection.split(",");
 
-        //helper method to go through choices and add it to Sandwich class cheeseArr
+        //Helper method to go through choices and add it to Sandwich class regularToppingsArray
 
         s.setRegularToppings(getRegularToppingsFromUserToAddToSandwich(selections));
         System.out.println("Your chosen regular toppings have been added to your sandwich");
 //================================Add Condiments===========================================//
-        //
+
         System.out.print("Condiments Menu ");
         displayCondimentMenu();
         String condimentSelection = Console.PromptForString();
         selections = condimentSelection.split(",");
 
-        //helper method to go through choices and add it to Sandwich class condimentsArray
+        //Helper method to go through choices and add it to Sandwich class condimentsArray
         s.setCondiments(getCondimentsFromUserToAddToSandwich(selections));
         System.out.println("Your chosen condiments have been added to your sandwich");
 //================================Add Sides===========================================//
@@ -130,25 +128,21 @@ public class Main {
         String sideSelection = Console.PromptForString();
         selections = sideSelection.split(",");
 
-        //helper method to go through choices and add it to Sandwich class sidesArray
+        //Helper method to go through choices and add it to Sandwich class sidesArray
         s.setSides(getSidesFromUserToAddToSandwich(selections));
         System.out.println("Your chosen sides have been added to your sandwich");
 
 //================================Toast Sandwich===========================================//
         String toasted = Console.PromptForString("Would you like the sandwich toasted? (yes/no): ");
-        //I want to change to simple boolean because continues to throw error
+        //Toasted Boolean default is false, this propmpt overrrides to make it true.
         if(toasted.toLowerCase().equals("yes")){
             s.setToasted(true);
         }
 
+       //Sandwich build is complete, add it to the order
+        order.addItemToOrder(s);
 
-        // this should be called after you have completed the entire sandwich!!
-
-        //  order.addSandwich(s);
-       order.addItemToOrder(s);
-
-       // orderItems.add("Sandwich: " + size + " " + bread + " with " + meat + ", " + cheese + ", toppings: " + toppings + ", sauces: " + sauces + ", toasted: " + toasted);
-        System.out.println("Sandwich added to order.");
+       System.out.println("Sandwich added to order.");
     }
 
     //Drink selection
@@ -156,11 +150,8 @@ public class Main {
 
         System.out.println("\nAdding Drink:");
 
-        System.out.print("Select drink size: ");
-        String size = scanner.nextLine().toUpperCase();
-        scanner.nextLine();
-        System.out.print("Select drink flavor: ");
-        String flavor = scanner.nextLine();
+        String size = Console.PromptForString("Select drink size: ");
+        String flavor = Console.PromptForString("Select drink flavor: ");
 
         Drink d = new Drink(size,flavor);
         order.addItemToOrder(d);
@@ -173,7 +164,7 @@ public class Main {
         System.out.println("\nAdding Chips:");
 
         System.out.print("Select chip type: ");
-        String chipType = scanner.nextLine();
+        String chipType = Console.PromptForString();
 
       //  orderItems.add("Chips: " + chipType);
         Chips c = new Chips(chipType);
@@ -191,17 +182,23 @@ public class Main {
         }
         System.out.println("Total price: " + order.getPrice());
 
-        System.out.print("Confirm order? (yes/no): ");
-        String confirm = scanner.nextLine();
-        if (confirm.equalsIgnoreCase("yes")) {
-            System.out.println("Order confirmed. Creating receipt...");
-            // Logic to create receipt file
 
-        } else {
-            System.out.println("Order canceled.");
-            orderItems.clear();
+        String confirm = Console.PromptForString("Confirm Order? (Yes/No)");
+
+            if (confirm.equalsIgnoreCase("yes")) {
+                System.out.println("Please enter your name: ");
+                String customerName = Console.PromptForString();
+                Receipts.generateReceipt(order, customerName);
+                System.out.println("Thank you for visiting!");
+
+            } else if (confirm.equalsIgnoreCase("cancel")) {
+                System.out.println("Order cancelled. Returning to home screen...");
+                orderItems.clear();
+
+            }
+
         }
-    }
+
 
     public static int getChoice() {
         System.out.print("Enter your choice: ");

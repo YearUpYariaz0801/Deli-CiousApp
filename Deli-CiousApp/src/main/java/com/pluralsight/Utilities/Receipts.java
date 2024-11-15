@@ -49,7 +49,8 @@ public class Receipts {
 
         // Append the total cost of the order
         receipt.append("-----------------------------\n");
-        receipt.append("Total: $").append(order.calculateTotal()).append("\n");
+        receipt.append("Total: $").append(order.getPrice()).append("\n");
+
 
         // Ensure the receipts directory exists, create if not
         File directory = new File("receipts");

@@ -5,7 +5,9 @@ import com.pluralsight.Utilities.CalculatePrice;
 import com.pluralsight.OtherOrderItems.Chips;
 import com.pluralsight.OtherOrderItems.Drink;
 import com.pluralsight.SandwichBuilder.Sandwich;
+import org.graalvm.collections.EconomicMap;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Order implements CalculatePrice {
@@ -90,7 +92,7 @@ public class Order implements CalculatePrice {
                 Sandwich sandwich = (Sandwich) item;
                 totalPrice += sandwich.calculateTotalCost(new Sandwich());
             } else {
-                totalPrice += item.calculatePrice();
+                totalPrice += item.getPrice();
             }
         }
         return totalPrice;
@@ -103,16 +105,7 @@ public class Order implements CalculatePrice {
             total += item.getPrice();
         }
         return total;
+
+
     }
-
-    @Override
-    public double calculatePrice() {
-        return 0;
-    }
-
-
-    public double calculateTotalCost(Sandwich sandwich, Toppings toppings, Drink drink, Chips chips) {
-        return 0;
-    }
-
 }

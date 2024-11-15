@@ -31,9 +31,7 @@ public class Chips extends MenuItem implements CalculatePrice {
 
 
 
-    public double calculateTotalCost(Chips price) {
-        return 0;
-    }
+
 
     @Override
     public String toString() {

@@ -8,10 +8,10 @@ import java.util.ArrayList;
 public class Sandwich extends MenuItem implements CalculatePrice {
     public int size;
     public String bread;
+    //Regular Toppings Array List
     public ArrayList<String> regularToppings;
 
-    //this should be probably be reformatted so that all of the toppings are in 1 array..
-    // or these 2 arrays are combined to be "premium toppings"
+    //Premium Toppings array Lists separated by type
     public ArrayList<String> meats;
     public ArrayList<String> cheeses;
     public boolean toasted;

@@ -1,6 +1,7 @@
 package com.pluralsight.OtherOrderItems;
 
 import com.pluralsight.BaseClasses.MenuItem;
+import com.pluralsight.BaseClasses.Order;
 import com.pluralsight.Utilities.CalculatePrice;
 
 public class Drink extends MenuItem implements CalculatePrice {
@@ -29,36 +30,24 @@ public class Drink extends MenuItem implements CalculatePrice {
     public void setFlavor(String flavor) {
         this.flavor = flavor;
     }
-// add toString later
-
-    public static double getPriceForDrinkSize(String size) {
-        double price = switch (size) {
-            case "small" -> 1.50;
-            case "medium" -> 2.00;
-            case "large" -> 2.50;
-            default -> -1; //\ Invalid size } return price;
-
-//                // Handle any other cases, if needed
-//                throw new IllegalArgumentException("Invalid drink size: " + this.drinkSize);
-        };
-
-         System.out.println("Sorry, invalid entry. Please select from the size options above!");
-        return price;
-    }
-
-
-
-
-
-    public String calculateTotalCost(Drink drink) {
-        return drinkSize;
-    }
 
     @Override
+    public double getPrice() {
+        return switch (drinkSize) {
+            case "S" -> 1.50;
+            case "M" -> 2.00;
+            case "L" -> 2.50;
+            default -> 0;
+
+           };
+
+    }
+
+      @Override
     public String toString() {
-        return "Drink" +
-                ", size =" + drinkSize + '\'' +
-                ", flavor='" + flavor + '\''
-                ;
+        return String.format("Drink: %s %s - $%.2f",
+                drinkSize.toUpperCase(),
+                flavor,
+                getPrice());
     }
 }

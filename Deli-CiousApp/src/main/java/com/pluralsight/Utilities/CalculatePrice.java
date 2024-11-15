@@ -8,7 +8,5 @@ import com.pluralsight.SandwichBuilder.Toppings;
 public interface CalculatePrice {
     double getPrice();
 
-    double calculatePrice();
-
 
 }
