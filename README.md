@@ -1,5 +1,7 @@
 # Deli-CiousApp
+
 Year Up Java Development Capstone 2
+
 Instructor Matt Christenson
 
 A POS System to aid in the service of DELI-cious Sandwich Shop!
